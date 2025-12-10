@@ -1,36 +1,59 @@
-package com.example.growyourday.ui.components // 실제 패키지 경로
+package com.example.growyourday.ui.components
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier // Modifier를 import 해야 함
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.growyourday.data.model.Todo
-import com.example.growyourday.viewmodel.TodoViewModel // ViewModel이 필요하다면
+import com.example.growyourday.viewmodel.TodoViewModel
 
 @Composable
 fun TodoItemCard(
     todo: Todo,
-    viewModel: TodoViewModel, // 체크박스 클릭 시 필요
-    modifier: Modifier = Modifier // 1. modifier를 파라미터로 받을 수 있도록 추가합니다.
+    viewModel: TodoViewModel, // ViewModel을 직접 참조하는 원래 방식으로 복구
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier // 2. 전달받은 modifier를 Card에 적용합니다.
-            .padding(vertical = 4.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFFFF0F5) // newapp의 카드 배경색 적용
+        )
     ) {
         Row(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(start = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Checkbox(
                 checked = todo.isDone,
-                onCheckedChange = { viewModel.toggle(todo.id)}
+                onCheckedChange = { viewModel.toggle(todo.id) },
+                colors = CheckboxDefaults.colors(
+                    checkedColor = Color.Black,
+                    uncheckedColor = Color.Black,
+                    checkmarkColor = Color.White
+                )
             )
-            Text(text = todo.title)
+            Text(
+                text = todo.title,
+                modifier = Modifier.weight(1f)
+            )
+            IconButton(
+                // ViewModel의 deleteTodo 함수를 직접 호출
+                onClick = { viewModel.deleteTodo(todo) }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "할 일 삭제"
+                )
+            }
         }
     }
 }
