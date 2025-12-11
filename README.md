@@ -2,14 +2,16 @@
 
 GrowYourDay는 사용자가 하루 할 일을 관리하고 달성률을 시각적으로 확인하는 간단한 목표 관리 앱입니다.  
 
+
+
 ##  앱 주요 화면 및 기능
 
-<hr> 
-<img src="Images/todo.png" width="150"> <img src="drawable/add_todo.png" width="150">
-** 할 일 추가 **
-<hr> 
+<p float="left">
+  <img src="app/Images/todo.png" width="150" />
+  <img src="app/Images/add_todo.png" width="150" />
+</p>
+** 할 일 추가 화면 ** 
 
-week06
 **할 일 추가**: 하단 입력 필드와 버튼을 통해 새로운 할 일을 목록에 추가할 수 있습니다.  
 **할 일 완료/취소**: 각 할 일 항목의 체크박스를 통해 완료 상태를 변경할 수 있습니다.  
 **할 일 삭제**: 휴지통 버튼을 눌러 할 일을 삭제할 수 있습니다.  
