@@ -27,7 +27,6 @@ fun HomeScreen(viewModel: TodoViewModel = viewModel()) {
     val completion = if (todos.isEmpty()) 0f else todos.count { it.isDone }.toFloat() / todos.size.toFloat()
     var newTodoText by remember { mutableStateOf("") }
 
-    // ▼▼▼▼▼ 1. Scaffold를 사용하여 화면의 상단, 중간, 하단을 명확히 나눕니다. ▼▼▼▼▼
     Scaffold(
         topBar = {
             // --- 상단 영역 ---
@@ -59,7 +58,6 @@ fun HomeScreen(viewModel: TodoViewModel = viewModel()) {
                     trackColor = Color.LightGray.copy(alpha = 0.4f) // 바의 배경(트랙) 색상을 연한 회색으로 지정
                 )
 
-                // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
                 // 상단 영역과 중간 영역 사이에 약간의 공간을 줍니다.
                 Spacer(modifier = Modifier.height(16.dp))
@@ -82,6 +80,7 @@ fun HomeScreen(viewModel: TodoViewModel = viewModel()) {
                         modifier = Modifier.weight(1f)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
+
                     Button(
                         onClick = {
                             if (newTodoText.isNotBlank()) {
@@ -118,5 +117,5 @@ fun HomeScreen(viewModel: TodoViewModel = viewModel()) {
             }
         }
     }
-    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
 }

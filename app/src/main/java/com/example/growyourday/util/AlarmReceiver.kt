@@ -1,18 +1,63 @@
 package com.example.growyourday.util
 
-import android.content.BroadcastReceiver // <-- 이 import 문 한 줄이 모든 것을 해결합니다!
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import androidx.core.app.NotificationCompat
 
-// BroadcastReceiver 클래스를 상속받아 AlarmReceiver를 정의합니다.
+import com.example.growyourday.MainActivity
+import com.example.growyourday.R
+
 class AlarmReceiver : BroadcastReceiver() {
 
-    // 브로드캐스트 메시지(예: 알람 시간 도달)를 수신하면 이 onReceive 함수가 자동으로 호출됩니다.
     override fun onReceive(context: Context, intent: Intent) {
-        // 이 안에서 알림(Notification)을 띄우거나 다른 작업을 수행할 수 있습니다.
-        // 예를 들어, "물 줄 시간입니다!" 같은 알림을 생성하는 코드가 여기에 들어갑니다.
+        // ▼▼▼▼▼ 여기에 알림 생성 코드를 전부 넣습니다. ▼▼▼▼▼
 
-        // "TODO: 알림 생성 로직 구현"
-        println("알람이 울렸습니다! onReceive가 호출되었습니다.")
+        // 1. 알림 채널 생성 (안드로이드 8.0 이상 필수)
+        createNotificationChannel(context)
+
+        // 2. 알림을 클릭했을 때 MainActivity를 열도록 Intent 설정
+        val mainIntent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(
+            context, 0, mainIntent, PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // 3. 알림 내용 및 설정 정의
+        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_foreground) // 앱 아이콘 사용
+            .setContentTitle("Grow Your Day 🌱")
+            .setContentText("오후 12시입니다. 당신의 하루를 키우세요!")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent) // 알림 클릭 시 동작 설정
+            .setAutoCancel(true) // 클릭하면 알림이 자동으로 사라짐
+            .build()
+
+        // 4. 시스템에 알림 표시 요청
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(NOTIFICATION_ID, notification)
+
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+    }
+
+    private fun createNotificationChannel(context: Context) {
+        val name = "일일 알림"
+        val descriptionText = "매일 정해진 시간에 알림을 보냅니다."
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+            description = descriptionText
+        }
+        val notificationManager: NotificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    companion object {
+        const val CHANNEL_ID = "GROW_YOUR_DAY_CHANNEL"
+        const val NOTIFICATION_ID = 101
     }
 }

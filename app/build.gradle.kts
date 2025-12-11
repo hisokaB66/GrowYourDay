@@ -69,4 +69,7 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.0") // Flow 지원
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
 }

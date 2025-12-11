@@ -8,11 +8,13 @@ import java.util.*
 
 class NotificationHelper(private val context: Context) {
 
+    // 1. "매일 12시" 알람을 위한 기존 함수
     fun scheduleDailyReminder() {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
-            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            context, 0, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val calendar = Calendar.getInstance().apply {
@@ -20,6 +22,10 @@ class NotificationHelper(private val context: Context) {
             set(Calendar.HOUR_OF_DAY, 12)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
+
+            if (System.currentTimeMillis() > timeInMillis) {
+                add(Calendar.DAY_OF_MONTH, 1)
+            }
         }
 
         alarmManager.setInexactRepeating(
@@ -29,4 +35,5 @@ class NotificationHelper(private val context: Context) {
             pendingIntent
         )
     }
+
 }
