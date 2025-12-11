@@ -5,7 +5,7 @@ GrowYourDay는 사용자가 하루 할 일을 관리하고 달성률을 시각�
 ##  앱 주요 화면 및 기능
 
 <hr> 
-<img src="drawable/todo.png" width="150"> <img src="drawable/add_todo.png" width="150">
+<img src="Images/todo.png" width="150"> <img src="drawable/add_todo.png" width="150">
 ** 할 일 추가 **
 <hr> 
 
