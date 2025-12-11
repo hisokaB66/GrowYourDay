@@ -19,23 +19,12 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF800020), // newapp의 버튼 색상(와인색)을 기본 색상으로 지정
+    primary = Color(0xFF800020),
     secondary = PurpleGrey40,
     tertiary = Pink40
-    // ...
+
 )
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-
-// ... (파일 상단 코드는 동일)
 
 @Composable
 fun GrowYourDayTheme(
@@ -55,9 +44,9 @@ fun GrowYourDayTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        // ▼▼▼▼▼ 진짜진짜 수정 부분입니다! ▼▼▼▼▼
+
         typography = com.example.growyourday.ui.theme.Typography,
-        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
         content = content
     )
 }

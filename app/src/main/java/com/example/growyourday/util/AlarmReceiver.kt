@@ -14,12 +14,9 @@ import com.example.growyourday.R
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        // ▼▼▼▼▼ 여기에 알림 생성 코드를 전부 넣습니다. ▼▼▼▼▼
 
-        // 1. 알림 채널 생성 (안드로이드 8.0 이상 필수)
         createNotificationChannel(context)
 
-        // 2. 알림을 클릭했을 때 MainActivity를 열도록 Intent 설정
         val mainIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -27,21 +24,18 @@ class AlarmReceiver : BroadcastReceiver() {
             context, 0, mainIntent, PendingIntent.FLAG_IMMUTABLE
         )
 
-        // 3. 알림 내용 및 설정 정의
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground) // 앱 아이콘 사용
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Grow Your Day 🌱")
             .setContentText("오후 12시입니다. 당신의 하루를 키우세요!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent) // 알림 클릭 시 동작 설정
-            .setAutoCancel(true) // 클릭하면 알림이 자동으로 사라짐
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
             .build()
 
-        // 4. 시스템에 알림 표시 요청
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(NOTIFICATION_ID, notification)
 
-        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
     }
 
     private fun createNotificationChannel(context: Context) {

@@ -17,7 +17,7 @@ import com.example.growyourday.viewmodel.TodoViewModel
 @Composable
 fun TodoItemCard(
     todo: Todo,
-    viewModel: TodoViewModel, // ViewModel을 직접 참조하는 원래 방식으로 복구
+    viewModel: TodoViewModel,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -25,7 +25,7 @@ fun TodoItemCard(
             .fillMaxWidth()
             .padding(vertical = 4.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFFFF0F5) // newapp의 카드 배경색 적용
+            containerColor = Color(0xFFFFF0F5)
         )
     ) {
         Row(
@@ -34,7 +34,7 @@ fun TodoItemCard(
         ) {
             Checkbox(
                 checked = todo.isDone,
-                onCheckedChange = { viewModel.toggle(todo.id) },
+                onCheckedChange = { viewModel.toggle(todo) },
                 colors = CheckboxDefaults.colors(
                     checkedColor = Color.Black,
                     uncheckedColor = Color.Black,
@@ -46,7 +46,6 @@ fun TodoItemCard(
                 modifier = Modifier.weight(1f)
             )
             IconButton(
-                // ViewModel의 deleteTodo 함수를 직접 호출
                 onClick = { viewModel.deleteTodo(todo) }
             ) {
                 Icon(
