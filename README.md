@@ -4,6 +4,12 @@ GrowYourDay는 사용자가 하루 할 일을 관리하고 달성률을 시각�
 
 ##  앱 주요 화면 및 기능
 
+<hr> 
+<img src="drawable/todo.png" width="150"> <img src="drawable/add_todo.png" width="150">
+** 할 일 추가 **
+<hr> 
+
+week06
 **할 일 추가**: 하단 입력 필드와 버튼을 통해 새로운 할 일을 목록에 추가할 수 있습니다.  
 **할 일 완료/취소**: 각 할 일 항목의 체크박스를 통해 완료 상태를 변경할 수 있습니다.  
 **할 일 삭제**: 휴지통 버튼을 눌러 할 일을 삭제할 수 있습니다.  
@@ -11,6 +17,7 @@ GrowYourDay는 사용자가 하루 할 일을 관리하고 달성률을 시각�
 **데이터 영속성**: `Room` 데이터베이스를 사용하여 앱을 종료했다가 다시 켜도 할 일 목록이 그대로 유지됩니다.  
 
 ##  사용된 기술
-`Scaffold`, `LazyColumn`, `Card`, `Button`, `LinearProgressIndicator` 등의 Composable 함수를 활용했습니다. **MVVM 아키텍처 (Model-View-ViewModel)**: UI와 비즈니스 로직을 분리하여 테스트와 유지보수가 용이한 구조로 설계했습니다.  
+`Scaffold`, `LazyColumn`, `Card`, `Button`, `LinearProgressIndicator` 등의 Composable 함수를 활용했습니다.  
+**MVVM 아키텍처 (Model-View-ViewModel)**: UI와 비즈니스 로직을 분리하여 테스트와 유지보수가 용이한 구조로 설계했습니다.  
 
 
